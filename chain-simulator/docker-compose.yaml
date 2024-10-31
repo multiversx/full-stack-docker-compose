@@ -87,7 +87,7 @@ services:
         condition: service_healthy
       events-notifier:
         condition: service_healthy
-    command: >
+    entrypoint: >
         /bin/bash -c " sed -i 's|http://localhost:9200|http://elasticsearch:9200|g' ./config/node/config/external.toml
         && ./start-with-services.sh -log-level *:INFO"
     healthcheck:
@@ -114,7 +114,7 @@ services:
 
   explorer:
     ports: 
-      - 80:80
+      - 3002:80
     container_name: explorer
     image: multiversx/mx-explorer-dapp:main
     environment:
@@ -125,3 +125,16 @@ services:
       START_EXPLORER_ADDRESS_STOP: https://devnet-explorer.multiversx.com
       START_NFT_EXPLORER_ADDRESS_STOP: https://devnet.xspotlight.com
       START_API_ADDRESS_STOP: http://127.0.0.1:3001
+
+  lite-wallet:
+    ports:
+      - 3003:80
+    container_name: lite-wallet
+    image: multiversx/mx-lite-wallet-dapp:main
+    environment:
+      START_NETWORK_ID_STOP: custom
+      START_NETWORK_NAME_STOP: custom
+      START_API_ADDRESS_STOP: http://127.0.0.1:3001
+      START_GATEWAY_URL_STOP: http://127.0.0.1:8085
+      START_WALLET_ADDRESS_STOP: https://testnet-wallet.multiversx.com
+      START_WEGLD_ID_STOP: xEGLD
