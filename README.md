@@ -13,6 +13,15 @@ Directory `chain-simulator` contains a `docker-compose.yaml` that includes the f
 - an instance of Explorer
 - an instance of Lite Wallet
 
+### How to start
+
+```shell
+cd chain-simulator
+docker-compose up -d
+```
+
+### Services
+
 The services are available at:
 ```
 Chain simulator: 127.0.0.1:8085
