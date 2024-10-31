@@ -1,8 +1,8 @@
 #!/bin/bash
 
- # generate 5 blocks to ensure that all the transactions are processed
+ # generate enough blocks to put the chain simulator in epoch 1 (most of the features activated)
 curl --request POST \
-  --url "http://localhost:8085/simulator/generate-blocks/20" \
+  --url "http://localhost:8085/simulator/generate-blocks-until-epoch-reached/1" \
   --header 'Content-Type: application/json' \
   -o /dev/null
 
