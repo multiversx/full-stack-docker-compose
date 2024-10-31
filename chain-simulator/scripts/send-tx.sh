@@ -1,11 +1,5 @@
 #!/bin/bash
 
- # generate enough blocks to put the chain simulator in epoch 1 (most of the features activated)
-curl --request POST \
-  --url "http://localhost:8085/simulator/generate-blocks-until-epoch-reached/1" \
-  --header 'Content-Type: application/json' \
-  -o /dev/null
-
 # Call the endpoint and store the response in a variable
 response=$(curl -s "http://localhost:8085/simulator/initial-wallets")
 
@@ -46,7 +40,7 @@ tx_send_response=$(curl -s --request POST \
 	"gasLimit": 50000,
 	"gasPrice": 1000000000,
 	"chainId": "chain",
-	"signature": "8f08137b79182c7b034d0533daff98a407fa32c6defa5496f92d1b1d8034cba0987524daf088d9ef7b5dffc5ce8a9b349069f9c86ead93a903457a09fa364907",
+	"signature": "aa",
 	"version": 1
 }')
 
