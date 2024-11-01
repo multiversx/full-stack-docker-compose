@@ -76,8 +76,8 @@ services:
 
   chain-simulator:
     container_name: chain-simulator
-    ports: 
-      - 8085:8085
+    # ports: 
+    #   - 8085:8085
     image: multiversx/chainsimulator:latest
     environment:
       EVENTS_NOTIFIER_URL: 'events-notifier:22111'
@@ -97,8 +97,8 @@ services:
      retries: 5
 
   api:
-    ports: 
-      - 127.0.0.1:3001:3001
+    # ports: 
+    #   - 127.0.0.1:3001:3001
     container_name: api
     image: multiversx/mx-api-service:test1
     environment:
@@ -113,8 +113,8 @@ services:
         condition: service_started
 
   explorer:
-    ports: 
-      - 3002:80
+    # ports: 
+    #   - 3002:80
     container_name: explorer
     image: multiversx/mx-explorer-dapp:main
     environment:
@@ -127,8 +127,8 @@ services:
       START_API_ADDRESS_STOP: http://127.0.0.1:3001
 
   lite-wallet:
-    ports:
-      - 3003:80
+    # ports:
+    #   - 3003:80
     container_name: lite-wallet
     image: multiversx/mx-lite-wallet-dapp:main
     environment:
@@ -138,3 +138,15 @@ services:
       START_GATEWAY_URL_STOP: http://127.0.0.1:8085
       START_WALLET_ADDRESS_STOP: https://testnet-wallet.multiversx.com
       START_WEGLD_ID_STOP: xEGLD
+
+  nginx: 
+    image: nginx:latest
+    container_name: nginx-proxy
+    volumes:
+      - ./configs/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 8085:8085
+      - 3001:3001
+      - 3002:3002
+      - 3003:3003
+
