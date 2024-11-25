@@ -80,8 +80,8 @@ services:
       - 8085:8085
     image: multiversx/chainsimulator:latest
     environment:
-      EVENTS_NOTIFIER_URL: 'events-notifier:22111'
-      ELASTIC_SEARCH_URL: 'elasticsearch:9200' # just a dummy string for now
+      EVENTS_NOTIFIER_URL: 'ws://events-notifier:22111'
+      ELASTIC_SEARCH_URL: 'elasticsearch:9200'
     depends_on:
       elasticsearch:
         condition: service_healthy
