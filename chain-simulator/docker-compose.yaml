@@ -106,7 +106,7 @@ services:
       CFG_urls_redis: redis
       CFG_urls_elastic: 'arr:["http://elasticsearch:9200"]'
       CFG_urls_gateway: 'arr:["http://chain-simulator:8085"]'
-      CFG_features_tokensFetch_enables: bool:false      
+      CFG_features_tokensFetch_enabled: bool:false      
     depends_on:
       elasticsearch:
         condition: service_healthy
