@@ -17,6 +17,7 @@ Directory `chain-simulator` contains a `docker-compose.yaml` that includes the f
 
 ```shell
 cd chain-simulator
+docker-compose down --remove-orphans  
 docker-compose up -d
 ```
 

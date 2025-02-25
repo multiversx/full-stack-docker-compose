@@ -100,12 +100,12 @@ services:
     ports: 
       - 127.0.0.1:3001:3001
     container_name: api
-    image: multiversx/mx-api-service:test1
+    image: multiversx/mx-api-service:test2
     environment:
-      MVX_ENV: devnet
-      REDIS_IP: redis
-      GATEWAY_URL: http://chain-simulator:8085
-      ELASTICSEARCH_URL: http://elasticsearch:9200
+      DEFAULT_CFG_FILE: devnet
+      CFG_urls_redis: redis
+      CFG_urls_elastic: 'arr:["http://elasticsearch:9200"]'
+      CFG_urls_gateway: 'arr:["http://chain-simulator:8085"]'      
     depends_on:
       elasticsearch:
         condition: service_healthy
@@ -116,7 +116,7 @@ services:
     ports: 
       - 3002:80
     container_name: explorer
-    image: multiversx/mx-explorer-dapp:main
+    image: multiversx/mx-explorer-dapp:test2
     environment:
       START_NAME_STOP: devnet
       START_CHAIN_ID_STOP: D
@@ -125,12 +125,14 @@ services:
       START_EXPLORER_ADDRESS_STOP: https://devnet-explorer.multiversx.com
       START_NFT_EXPLORER_ADDRESS_STOP: https://devnet.xspotlight.com
       START_API_ADDRESS_STOP: http://127.0.0.1:3001
+      START_IS_SOVEREIGN_STOP: "false"
+
 
   lite-wallet:
     ports:
       - 3003:80
     container_name: lite-wallet
-    image: multiversx/mx-lite-wallet-dapp:main
+    image: multiversx/mx-lite-wallet-dapp:test2
     environment:
       START_NETWORK_ID_STOP: custom
       START_NETWORK_NAME_STOP: custom
